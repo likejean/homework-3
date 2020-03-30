@@ -16,10 +16,6 @@ describe('TestButton', () => {
         expect(TestButtonComponent).toMatchSnapshot();
     });
 
-    it('renders button content correctly', () => {
-        const { getByTestId } = render(<TestButton></TestButton>);
-        expect(getByTestId('button')).toHaveTextContent('S');
-    });
 
     it('should call mock function when button is clicked', () =>{
         const tree = Enzyme.shallow(
