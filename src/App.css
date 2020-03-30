@@ -2,3 +2,14 @@
     width: 100%;
     font-size: 45px;
 }
+
+.w3-border {
+    border: 10px solid lightseagreen;
+}
+
+
+
+i.icon-thumbs-up {
+    padding: 10px;
+    margin-right: 35px;
+}
