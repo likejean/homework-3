@@ -1,14 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TestButton render correctly Button component 1`] = `
-<button
-  className="w3-btn w3-border w3-hover-blue"
-  data-testid="button"
-  onClick={[Function]}
->
-  <i
-    className="icon-thumbs-up"
-  />
-  SUBMIT
-</button>
-`;
+exports[`Button should render correctly 1`] = `ShallowWrapper {}`;

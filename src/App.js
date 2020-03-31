@@ -13,13 +13,14 @@ function App() {
     const [submit, setSubmit] = useState({});
 
     const handleInputChange = e => {
-        console.log(inputs)
         setInputs({...inputs, [e.target.name]: e.target.value});
     }
 
+    const handleSubmit = () => setSubmit(inputs);
+
     const props = {
         handleInputChange: handleInputChange,
-        setSubmit: setSubmit,
+        handleSubmit: handleSubmit,
         inputs: inputs
     }
 
@@ -29,7 +30,7 @@ function App() {
                 <h2>Input Form</h2>
             </div>
             <Form {...props}/>
-            <Button {...props}/>
+            <Button handleSubmit={handleSubmit}/>
             {/*<button className="w3-btn w3-border w3-hover-blue" onClick={() => setSubmit(inputs)}>SUBMIT</button>*/}
         </div>
     );

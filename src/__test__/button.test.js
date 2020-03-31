@@ -1,61 +1,45 @@
 import React from 'react';
 import Button from '../Button';
-import { render } from '@testing-library/react';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import "@testing-library/jest-dom/extend-expect";
-import renderer from 'react-test-renderer';
-import Enzyme from 'enzyme';
+import renderer, { create } from 'react-test-renderer';
+
+import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
-const mockFn = jest.fn();
 
-const TestButton = props => <Button {...props}/>;
-describe('TestButton', () => {
-    it('render correctly Button component', () => {
-        const TestButtonComponent = renderer.create(<TestButton />).toJSON();
-        expect(TestButtonComponent).toMatchSnapshot();
+afterEach(cleanup);
+describe('Button', () => {
+    it('should be defined', () => {
+        expect(<Button />).toBeDefined();
     });
-
-
-    it('should call mock function when button is clicked', () =>{
-        const tree = Enzyme.shallow(
-            <Button setSubmit={mockFn} />
+    it('should render correctly', () => {
+        const tree = shallow(
+            <Button />
         );
-        tree.simulate('click');
-        expect(mockFn).toHaveBeenCalled();
-    })
-
-    it('render correctly icon prop', () => {
-        const props = {
-                icon: <i className="icon-thumbs-up" />
-            },
-            TestButtonComponent = Enzyme.mount(<TestButton {...props} />);
-        expect(TestButtonComponent.find('i').hasClass('icon-thumbs-up')).toBeTruthy();
+        expect(tree).toMatchSnapshot();
     });
+    // it('Test click event', () => {
+    //     const mockCallBack = jest.fn();
+    //
+    //     const button = shallow((<Button onClick={mockCallBack}>SUBMIT</Button>));
+    //     button.find('button').simulate('click');
+    //     expect(mockCallBack.mock.calls.length).toEqual(2);
+    // });
+    it('test text content in button', () => {
+        const wrapper = shallow(<Button />);
+        console.log(wrapper.find({ className: "w3-btn w3-border w3-hover-blue" }).text().includes(''));
+        expect(wrapper.find({ className: "w3-btn w3-border w3-hover-blue" }).text().includes('')).toBe(true);
+        expect(wrapper.find({ className: "w3-btn w3-border w3-hover-blue" }).text());
+
+    });
+    // it('test click event', () => {
+    //     const wrapper = shallow(<Button></Button>);
+    //     const button = wrapper.find('button');
+    //
+    //     expect(wrapper.find("button").click()).toHaveBeenCalledTimes(1);
+    // });
+
 });
 
-//
-//
-// afterEach(cleanup);
-//
-// it('renders without crushing', () => {
-//     const div = document.createElement("div");
-//     ReactDOM.render(<Button></Button>, div);
-// });
-//
-// it('renders button correctly', () => {
-//     const {getByTestId} = render(<Button>SUMBIT</Button>);
-//     expect(getByTestId('button')).toHaveTextContent('SUBMIT');
-// });
-//
-//
-// it("matches snapshot-1", () => {
-//     const tree = renderer.create(<Button>SUBMIT</Button>).toJSON();
-//     expect(tree).toMatchSnapshot();
-// })
-//
-// it("matches snapshot-2", () => {
-//     const tree = renderer.create(<Button>SAVE</Button>).toJSON();
-//     expect(tree).toMatchSnapshot();
-// })
-//
