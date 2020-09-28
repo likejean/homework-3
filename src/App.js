@@ -31,7 +31,7 @@ function App() {
             </div>
             <Form {...props}/>
             <Button handleSubmit={handleSubmit}/>
-            {/*<button className="w3-btn w3-border w3-hover-blue" onClick={() => setSubmit(inputs)}>SUBMIT</button>*/}
+           
         </div>
     );
 }
